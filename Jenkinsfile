@@ -1,73 +1,28 @@
 pipeline {
 
     agent any
-
-
-
+    tools {
+        maven 'Maven3' 
+    }
     stages {
-        
-        
-stage ( 'checkout' ) {
-    steps  {
-        checkout  scm
+        stage('Compile stage') {
+            steps {
+                bat "mvn clean compile" 
+        }
     }
-}
 
-
-
-
-        stage ('Compile Stage') {
-
-
-
-            steps {
-
-                withMaven(maven : 'maven3') {
-
-                    sh 'mvn clean compile'
-
-                }
-
-            }
-
+         stage('testing stage') {
+             steps {
+                bat "mvn test"
         }
-
-
-
-        stage ('Testing Stage') {
-
-
-
-            steps {
-
-                withMaven(maven : 'maven3') {
-
-                    sh 'mvn test'
-
-                }
-
-            }
-
-        }
-
-
-
-
-
-        stage ('Deployment Stage') {
-
-            steps {
-
-                withMaven(maven : 'maven3') {
-
-                    sh 'mvn deploy'
-
-                }
-
-            }
-
-        }
-
     }
+
+          stage('deployment stage') {
+              steps {
+                bat "mvn deploy"
+        }
+    }
+
+  }
 
 }
