@@ -22,7 +22,7 @@ stage ( 'checkout' ) {
 
             steps {
 
-                withMaven(maven : 'maven3.3.9') {
+                withMaven(maven : 'maven3') {
 
                     sh 'mvn clean compile'
 
@@ -40,7 +40,7 @@ stage ( 'checkout' ) {
 
             steps {
 
-                withMaven(maven : 'maven3.3.9') {
+                withMaven(maven : 'maven3') {
 
                     sh 'mvn test'
 
@@ -58,7 +58,7 @@ stage ( 'checkout' ) {
 
             steps {
 
-                withMaven(maven : 'maven3.3.9') {
+                withMaven(maven : 'maven3') {
 
                     sh 'mvn deploy'
 
